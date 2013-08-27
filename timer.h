@@ -1,4 +1,4 @@
-The MIT License (MIT)
+/* The MIT License (MIT)
 
 Copyright (c) 2013 Haruhiko Matsuo <halm.matsuo@gmail.com>
 
@@ -18,5 +18,23 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+THE SOFTWARE. */
 
+#include <stdbool.h>
+#include <time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <mpi.h>
+
+typedef struct timer {
+  double start;
+  double elaps;
+  char label[32];
+  int count;
+} Timer;
+
+void timer_mpi_start(MPI_Comm comm, Timer* t, bool brr);
+void timer_mpi_stop(MPI_Comm comm, Timer* t);
+
+void timer_mpi_clear(MPI_Comm comm, Timer* t);
+void timer_summarize(MPI_Comm comm, Timer* t, int num_timer);
