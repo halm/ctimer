@@ -92,7 +92,7 @@ void timer_summarize(MPI_Comm comm, Timer* t, int num_timer) {
 }
 
 
-void  timer_detaile(MPI_Comm comm, const Timer *t, const char *mode) {
+void  timer_detail(MPI_Comm comm, const Timer *t, const char *mode) {
   int np;
   int rank;
 
