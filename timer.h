@@ -46,6 +46,7 @@ void timer_mpi_stop(MPI_Comm comm, Timer* t);
 
 void timer_mpi_clear(MPI_Comm comm, Timer* t);
 void timer_summarize(MPI_Comm comm, Timer* t, int num_timer);
+void timer_detaile(MPI_Comm comm, const Timer *t, const char *mode);
 
 #ifdef __cplusplus
 }

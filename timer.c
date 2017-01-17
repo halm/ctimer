@@ -90,3 +90,28 @@ void timer_summarize(MPI_Comm comm, Timer* t, int num_timer) {
     }
   }
 }
+
+
+void  timer_detaile(MPI_Comm comm, const Timer *t, const char *mode) {
+  int np;
+  int rank;
+
+  MPI_Comm_size(comm, &np);
+  MPI_Comm_rank(comm, &rank);
+
+  char output_file[128];
+  const char *pref = "timer";
+  const char *suf  = ".dat";
+
+  snprintf(output_file, 128, "%s%05d%s", pref, rank, suf);
+  FILE* fd = fopen(output_file, mode);
+
+  if (fd == NULL) {
+    fprintf(stderr, "Failed to open file %s\n", output_file);
+    exit(EXIT_FAILURE);
+  }
+
+  fprintf(fd, "timer: " "%5d %-55s"
+	  " %12.10lf %12d\n", rank, t->label, t->elaps, t->count);
+}
+
