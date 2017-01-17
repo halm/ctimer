@@ -113,5 +113,7 @@ void  timer_detail(MPI_Comm comm, const Timer *t, const char *mode) {
 
   fprintf(fd, "timer: " "%5d %-55s"
 	  " %12.10lf %12d\n", rank, t->label, t->elaps, t->count);
+
+  fclose(fd);
 }
 
