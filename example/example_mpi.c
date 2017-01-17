@@ -42,6 +42,7 @@ int main(int argc, char** argv) {
   printf("%s elapsed time: %f [sec]\n", t[1].label, t[1].elaps);
 
   timer_summarize(MPI_COMM_WORLD, t, num_timer);
+  timer_detaile(MPI_COMM_WORLD, &t[0], "a");
 
   MPI_Finalize();
   return 0;
