@@ -20,10 +20,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+#ifndef _TIMER_H
+#define _TIMER_H
+
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <mpi.h>
 
 typedef struct timer {
@@ -33,8 +37,18 @@ typedef struct timer {
   int count;
 } Timer;
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 void timer_mpi_start(MPI_Comm comm, Timer* t, bool brr);
 void timer_mpi_stop(MPI_Comm comm, Timer* t);
 
 void timer_mpi_clear(MPI_Comm comm, Timer* t);
 void timer_summarize(MPI_Comm comm, Timer* t, int num_timer);
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#endif /* end of _TIMER_H */
